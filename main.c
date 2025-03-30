@@ -15,6 +15,7 @@ void pasarArrayAPila(Pila *pila, int array[], int v);
 int cargaArrayFloat(float array[], int v, int max_dim);
 void muestraArregloFloat(float array[], int v);
 float sumaElementosArrayFloat(float array[], int v);
+int contieneCaracter(char array[], int v, char dato);
 
 int main(int argc, char *argv[]) {
     int selected;
@@ -26,6 +27,7 @@ int main(int argc, char *argv[]) {
 
     int array0[DIMENSION];
     float array1[DIMENSION];
+    char array2[DIMENSION];
     int v = 0;
 
 
@@ -70,6 +72,22 @@ int main(int argc, char *argv[]) {
 
                 float sumaFloat=sumaElementosArrayFloat(array1,v);
                 printf("Suma de los elementos del array: %.2f \n",sumaFloat);
+
+                system("PAUSE");
+                break;
+            case 6:
+                v = cargaArrayChar(array2,v,DIMENSION);
+                printf("\n");
+                muestraArregloChar(array2, v);
+                printf("Ingrese un caracter a buscar: ");
+                char dato;
+                scanf("%c",&dato);
+                if (contieneCaracter(array2,v,dato)){
+                        printf("El dato %c se encuentra en el arreglo");
+                }else{
+                    printf("El dato %c NO se encuentra en el arreglo");
+                }
+
 
                 system("PAUSE");
                 break;
@@ -178,4 +196,40 @@ float sumaElementosArrayFloat(float array[], int v){
         suma=suma+array[i];
     }
     return suma;
+}
+
+int cargaArrayChar(char array[], int v, int max_dim){
+    char respuesta;
+
+    do {
+        printf("Ingrese un valor al arreglo, en la posicion a[%d]: ", v);
+        fflush(stdin);
+        scanf("%c", &array[v]);
+        v++;
+        printf("\nDesea ingresar otro numero? (s/n): ");
+        fflush(stdin);
+        scanf(" %c", &respuesta);
+
+    }while((respuesta=='s' || respuesta=='S') && v<max_dim);
+
+    return v;
+}
+
+void muestraArregloChar (char array[], int v){
+    printf("Su arreglo: \n");
+
+    for (int i=0;i<v;i++){
+        printf("%c | ", array[i]);
+    }
+    printf("\n");
+}
+
+int contieneCaracter(char array[], int v, char dato){
+    for (int i=0;i<v;i++){
+        if (array[i]== dato){
+            return 1;
+        }
+    }
+
+    return 0;
 }
