@@ -28,7 +28,11 @@ int main(int argc, char *argv[]) {
     int array0[DIMENSION];
     float array1[DIMENSION];
     char array2[DIMENSION];
+    char array03[DIMENSION] = {'a', 'c', 'e', 'g'};
+
     int v = 0;
+
+    char datoChar;
 
 
     do {
@@ -77,18 +81,25 @@ int main(int argc, char *argv[]) {
                 break;
             case 6:
                 v = cargaArrayChar(array2,v,DIMENSION);
-                printf("\n");
+                //sacar dato por datoChar y preguntar qe es lo mas correcto
+                char dato;
                 muestraArregloChar(array2, v);
                 printf("Ingrese un caracter a buscar: ");
-                char dato;
-                scanf("%c",&dato);
+                scanf(" %c",&dato);
                 if (contieneCaracter(array2,v,dato)){
-                        printf("El dato %c se encuentra en el arreglo");
+                        printf("El dato %c se encuentra en el arreglo \n",dato);
                 }else{
-                    printf("El dato %c NO se encuentra en el arreglo");
+                    printf("El dato %c NO se encuentra en el arreglo \n",dato);
                 }
-
-
+                system("PAUSE");
+                break;
+            case 7:
+                muestraArregloChar(array03,4);
+                printf("Ingrese un caracter a insertar en el arreglo \n");
+                scanf(" %c",&datoChar);
+                insertarOrdenadoChar(array03,&v,datoChar);
+                printf("Arreglo con el caracter insertado: \n");
+                muestraArregloChar(array03,v);
                 system("PAUSE");
                 break;
             case 0:
@@ -117,6 +128,7 @@ int menu() {
     printf("\n4- Hacer una función que reciba como parámetro un arreglo, la cantidad de elementos (válidos) cargados en él y una Pila. La función debe copiar los elementos del arreglo en la pila.");
     printf("\n5- Realizar una función que sume los elementos de un arreglo de números reales (float) de dimensión 100. (se recomienda hacer una función para cargar y otra para mostrar para este tipo de dato asociado al arreglo).");
     printf("\n6- Realizar una función que indique si un elemento dado se encuentra en un arreglo de caracteres.");
+    printf("\n7- Realizar una función que inserte un carácter en un arreglo ordenado alfabéticamente, conservando el orden.");
     printf("\n0- SALIR");
     printf("\n\nIngrese su elección: ");
     scanf("%d", &input);
@@ -232,4 +244,19 @@ int contieneCaracter(char array[], int v, char dato){
     }
 
     return 0;
+}
+
+void insertarOrdenadoChar(char array[], int *v, char dato){
+   //encontrar la posicion adecuada
+   int i=0;
+   while(i<*v && array[i]<dato){
+    i++;
+   }
+    //Mover los elementos a la derecha
+
+    for(int j=*v;j>1;j--){
+        array[j]=array[j-1];
+    }
+    array[i]=dato;
+    (*v)++;
 }
