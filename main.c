@@ -246,6 +246,8 @@ int contieneCaracter(char array[], int v, char dato){
     return 0;
 }
 
+
+//Se puede usar punteros aca ?
 void insertarOrdenadoChar(char array[], int *v, char dato){
    //encontrar la posicion adecuada
    int i=0;
@@ -254,9 +256,9 @@ void insertarOrdenadoChar(char array[], int *v, char dato){
    }
     //Mover los elementos a la derecha
 
-    for(int j=*v;j>1;j--){
-        array[j]=array[j-1];
-    }
+    for(int j = *v - 1; j >= i; j--) {
+       array[j + 1] = array[j];
+   }
     array[i]=dato;
     (*v)++;
 }
