@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
     float array1[DIMENSION];
     char array2[DIMENSION];
     char array03[DIMENSION] = {'a', 'c', 'e', 'g'};
-
+    int v03 =4;
     int v = 0;
 
     char datoChar;
@@ -100,12 +100,12 @@ int main(int argc, char *argv[])
             system("PAUSE");
             break;
         case 7:
-            muestraArregloChar(array03,4);
+            muestraArregloChar(array03,v03);
             printf("Ingrese un caracter a insertar en el arreglo \n");
             scanf(" %c",&datoChar);
-            insertarOrdenadoChar(array03,&v,datoChar);
+            insertarOrdenadoChar(array03,&v03,datoChar);
             printf("Arreglo con el caracter insertado: \n");
-            muestraArregloChar(array03,v);
+            muestraArregloChar(array03,v03);
             system("PAUSE");
             break;
         case 0:
@@ -280,7 +280,7 @@ int contieneCaracter(char array[], int v, char dato)
 }
 
 
-//Se puede usar punteros aca ?
+//Se puede usar punteros aca ? si, polrqe ? xd
 void insertarOrdenadoChar(char array[], int *v, char dato)
 {
     //encontrar la posicion adecuada
