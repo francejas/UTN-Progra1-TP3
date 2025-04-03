@@ -312,7 +312,6 @@ int contieneCaracter(char array[], int v, char dato)
 }
 
 
-//Se puede usar punteros aca ? si, polrqe ? xd
 void insertarOrdenadoChar(char array[], int *v, char dato)
 {
     //encontrar la posicion adecuada
@@ -348,15 +347,15 @@ char encontrarMaximoCaracter (char array[], int v )
 
 int esCapicuaArreglo (int array[], int v)
 {
-    int capicua=0;
+    int flag=0;
 
     for(int i=0; i<v/2; i++)
     {
         if (array[i]==array[v-1-i])
         {
-            capicua=1;
+            flag=1;
         }
     }
 
-    return capicua;
+    return flag;
 }
