@@ -16,6 +16,7 @@ int cargaArrayFloat(float array[], int v, int max_dim);
 void muestraArregloFloat(float array[], int v);
 float sumaElementosArrayFloat(float array[], int v);
 int contieneCaracter(char array[], int v, char dato);
+char encontrarMaximoCaracter (char array[], int v );
 
 int main(int argc, char *argv[])
 {
@@ -26,14 +27,15 @@ int main(int argc, char *argv[])
     inicpila(&pila0);
 
 
-    int array0[DIMENSION];
-    float array1[DIMENSION];
-    char array2[DIMENSION];
-    char array03[DIMENSION] = {'a', 'c', 'e', 'g'};
-    int v03 =4;
+    int arrayEnteros[DIMENSION];
+    float arrayFloat[DIMENSION];
+    char arrayChar[DIMENSION];
+    char arrayCharCargado[DIMENSION] = {'a', 'c', 'e', 'g'};
+    int validosCharCargado =4;
     int v = 0;
 
     char datoChar;
+    char caracter;
 
 
     do
@@ -42,54 +44,54 @@ int main(int argc, char *argv[])
         switch (selected)
         {
         case 1:
-            v = cargaArray(array0, v, DIMENSION);
+            v = cargaArray(arrayEnteros, v, DIMENSION);
             printf("\n");
-            muestraArreglo(array0, v);
+            muestraArreglo(arrayEnteros, v);
             system("PAUSE");
             break;
         case 2:
-            v = cargaArray(array0, v, DIMENSION);
+            v = cargaArray(arrayEnteros, v, DIMENSION);
             printf("\n");
-            muestraArreglo(array0, v);
+            muestraArreglo(arrayEnteros, v);
             system("PAUSE");
             break;
         case 3:
-            v = cargaArray(array0, v, DIMENSION);
+            v = cargaArray(arrayEnteros, v, DIMENSION);
             printf("\n");
-            muestraArreglo(array0, v);
-            int suma=sumaElementosArray(array0,v);
+            muestraArreglo(arrayEnteros, v);
+            int suma=sumaElementosArray(arrayEnteros,v);
             printf("Suma de los elementos del array: %d \n",suma);
             system("PAUSE");
             break;
         case 4:
-            v = cargaArray(array0, v, DIMENSION);
+            v = cargaArray(arrayEnteros, v, DIMENSION);
             printf("\n");
-            muestraArreglo(array0, v);
-            pasarArrayAPila(&pila0,array0,v);
+            muestraArreglo(arrayEnteros, v);
+            pasarArrayAPila(&pila0,arrayEnteros,v);
             printf("Pila: \n");
             mostrar(&pila0);
             system("PAUSE");
             break;
         case 5:
-            v=cargaArrayFloat(array1,v,DIMENSION);
+            v = cargaArrayFloat(arrayFloat,v,DIMENSION);
             printf("\n");
-            muestraArregloFloat(array1, v);
+            muestraArregloFloat(arrayFloat, v);
 
             //porqe aca si pongo suma no anda ??
 
-            float sumaFloat=sumaElementosArrayFloat(array1,v);
+            float sumaFloat=sumaElementosArrayFloat(arrayFloat,v);
             printf("Suma de los elementos del array: %.2f \n",sumaFloat);
 
             system("PAUSE");
             break;
         case 6:
-            v = cargaArrayChar(array2,v,DIMENSION);
+            v = cargaArrayChar(arrayChar,v,DIMENSION);
             //sacar dato por datoChar y preguntar qe es lo mas correcto
             char dato;
-            muestraArregloChar(array2, v);
+            muestraArregloChar(arrayChar, v);
             printf("Ingrese un caracter a buscar: ");
             scanf(" %c",&dato);
-            if (contieneCaracter(array2,v,dato))
+            if (contieneCaracter(arrayChar,v,dato))
             {
                 printf("El dato %c se encuentra en el arreglo \n",dato);
             }
@@ -100,12 +102,38 @@ int main(int argc, char *argv[])
             system("PAUSE");
             break;
         case 7:
-            muestraArregloChar(array03,v03);
+            muestraArregloChar(arrayCharCargado,validosCharCargado);
             printf("Ingrese un caracter a insertar en el arreglo \n");
             scanf(" %c",&datoChar);
-            insertarOrdenadoChar(array03,&v03,datoChar);
+            insertarOrdenadoChar(arrayCharCargado,&validosCharCargado,datoChar);
             printf("Arreglo con el caracter insertado: \n");
-            muestraArregloChar(array03,v03);
+            muestraArregloChar(arrayCharCargado,validosCharCargado);
+            system("PAUSE");
+            break;
+        case 8:
+            caracter = encontrarMaximoCaracter(arrayCharCargado,validosCharCargado);
+            printf("El maximo caracter del arreglo es: %c \n",caracter);
+
+            system("PAUSE");
+            break;
+        case 9:
+            v = cargaArray(arrayEnteros, v, DIMENSION);
+            printf("\n");
+            muestraArreglo(arrayEnteros, v);
+            int esCapicua=esCapicuaArreglo(arrayEnteros,v);
+            if (esCapicua==1)
+            {
+                printf("El array SI es capicua. \n");
+            }
+            else
+            {
+                printf("El array NO es capicua. \n");
+            }
+
+            system("PAUSE");
+            break;
+        case 10:
+
             system("PAUSE");
             break;
         case 0:
@@ -137,6 +165,9 @@ int menu()
     printf("\n5- Realizar una funci�n que sume los elementos de un arreglo de n�meros reales (float) de dimensi�n 100. (se recomienda hacer una funci�n para cargar y otra para mostrar para este tipo de dato asociado al arreglo).");
     printf("\n6- Realizar una funci�n que indique si un elemento dado se encuentra en un arreglo de caracteres.");
     printf("\n7- Realizar una funci�n que inserte un car�cter en un arreglo ordenado alfab�ticamente, conservando el orden.");
+    printf("\n8- Realizar una función que obtenga el máximo carácter de un arreglo dado.");
+    printf("\n9- Realizar una función que determine si un arreglo es capicúa.");
+    printf("\n10- Realizar una función que invierta los elementos de un arreglo. (sin utilizar un arreglo auxiliar)");
     printf("\n0- SALIR");
     printf("\n\nIngrese su elecci�n: ");
     scanf("%d", &input);
@@ -265,18 +296,19 @@ void muestraArregloChar (char array[], int v)
     printf("\n");
 }
 
-//poner flag
+
 int contieneCaracter(char array[], int v, char dato)
 {
+    int flag=0;
     for (int i=0; i<v; i++)
     {
         if (array[i]== dato)
         {
-            return 1;
+            flag=1;
         }
     }
 
-    return 0;
+    return flag;
 }
 
 
@@ -297,4 +329,34 @@ void insertarOrdenadoChar(char array[], int *v, char dato)
     }
     array[i]=dato;
     (*v)++;
+}
+
+char encontrarMaximoCaracter (char array[], int v )
+{
+    char caracterMaximo=array[0];
+
+    for(int i=0; i<v; i++)
+    {
+        if (caracterMaximo<array[i])
+        {
+            caracterMaximo=array[i];
+        }
+    }
+
+    return caracterMaximo;
+}
+
+int esCapicuaArreglo (int array[], int v)
+{
+    int capicua=0;
+
+    for(int i=0; i<v/2; i++)
+    {
+        if (array[i]==array[v-1-i])
+        {
+            capicua=1;
+        }
+    }
+
+    return capicua;
 }
