@@ -148,7 +148,7 @@ int main(int argc, char *argv[])
         case 11:
             printf("Arreglo antes de ordenar: \n");
             muestraArreglo(arrayEnterosCargado,validosEnterosCargado);
-            //ordenamientoSeleccion(arrayEnterosCargado,validosEnterosCargado);
+            ordenamientoSeleccion(arrayEnterosCargado,validosEnterosCargado);
             printf("Arreglo despues de ordenar: \n");
             muestraArreglo(arrayEnterosCargado,validosEnterosCargado);
             system("PAUSE");
@@ -378,12 +378,18 @@ int esCapicuaArreglo (int array[], int v)
     return flag;
 }
 
-void invertirElementos (char array[], int v){
+void invertirElementos (char array[], int v)
+{
 
-    for (int i=0;i<v/2;i++){
+    for (int i=0; i<v/2; i++)
+    {
         char temp = array[i];
         array[i]=array[v-1-i];
         array[v-1-i]=temp;
     }
 }
 
+void ordenamientoSeleccion (char array[], int v )
+{
+
+}
