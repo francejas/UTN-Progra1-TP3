@@ -30,8 +30,13 @@ int main(int argc, char *argv[])
     int arrayEnteros[DIMENSION];
     float arrayFloat[DIMENSION];
     char arrayChar[DIMENSION];
+
     char arrayCharCargado[DIMENSION] = {'a', 'c', 'e', 'g'};
     int validosCharCargado =4;
+
+    int arrayEnterosCargado[DIMENSION]= {4,2,5,6,1};
+    int validosEnterosCargado=5;
+
     int v = 0;
 
     char datoChar;
@@ -133,7 +138,19 @@ int main(int argc, char *argv[])
             system("PAUSE");
             break;
         case 10:
-
+            printf("Arreglo antes de invertir; \n");
+            muestraArregloChar(arrayCharCargado,validosCharCargado);
+            invertirElementos(arrayCharCargado, validosCharCargado);
+            printf("Arreglo invertido: \n");
+            muestraArregloChar(arrayCharCargado,validosCharCargado);
+            system("PAUSE");
+            break;
+        case 11:
+            printf("Arreglo antes de ordenar: \n");
+            muestraArreglo(arrayEnterosCargado,validosEnterosCargado);
+            ordenamientoSeleccion(arrayEnterosCargado,validosEnterosCargado);
+            printf("Arreglo despues de ordenar: \n");
+            muestraArreglo(arrayEnterosCargado,validosEnterosCargado);
             system("PAUSE");
             break;
         case 0:
@@ -167,7 +184,8 @@ int menu()
     printf("\n7- Realizar una funci�n que inserte un car�cter en un arreglo ordenado alfab�ticamente, conservando el orden.");
     printf("\n8- Realizar una función que obtenga el máximo carácter de un arreglo dado.");
     printf("\n9- Realizar una función que determine si un arreglo es capicúa.");
-    printf("\n10- Realizar una función que invierta los elementos de un arreglo. (sin utilizar un arreglo auxiliar)");
+    printf("\n10- Realizar una función que invierta los elementos de un arreglo. (sin utilizar un arreglo auxiliar).");
+    printf("\n11- Ordenamiento por Seleccion.");
     printf("\n0- SALIR");
     printf("\n\nIngrese su elecci�n: ");
     scanf("%d", &input);
@@ -358,4 +376,19 @@ int esCapicuaArreglo (int array[], int v)
     }
 
     return flag;
+}
+
+void invertirElementos (char array[], int v){
+
+    for (int i=0;i>=v-1;i++){
+        char temp = array[i];
+        array[i]=array[v-1-i];
+        array[v-1-i]=temp;
+    }
+}
+
+void ordenamientoSeleccion {
+
+
+
 }
