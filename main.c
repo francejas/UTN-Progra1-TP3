@@ -378,7 +378,7 @@ int esCapicuaArreglo (int array[], int v)
     return flag;
 }
 
-void invertirElementos (char array[], int v)
+void invertirElementos (int array[], int v)
 {
 
     for (int i=0; i<v/2; i++)
@@ -389,7 +389,35 @@ void invertirElementos (char array[], int v)
     }
 }
 
-void ordenamientoSeleccion (char array[], int v )
+void ordenamientoSeleccion (int array[], int v )
 {
+    int posMenor;
+    int i=0;
+    int aux;
 
+    while(i<v-1){
+        posMenor=posicionMenor(array,v,i);
+        aux=array[posMenor];
+        array[posMenor]=array[i];
+        array[i]=aux;
+        i++;
+    }
 }
+
+int posicionMenor (int array[], int v, int pos){
+    int menor=array[pos];
+    int posMenor=pos;
+    //emepzamos desde la siguiente posicion
+    int i=pos+1;
+
+
+    while (i<v){
+        if (menor>array[i]){
+            menor = array[i];
+            posMenor = i;
+        }
+        i++;
+    }
+    return posMenor;
+}
+
