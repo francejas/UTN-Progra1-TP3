@@ -17,6 +17,7 @@ void muestraArregloFloat(float array[], int v);
 float sumaElementosArrayFloat(float array[], int v);
 int contieneCaracter(char array[], int v, char dato);
 char encontrarMaximoCaracter (char array[], int v );
+int intercalarArreglosOrdenados (char array1[],int a,char array2[],int b,char array3[],int v);
 
 int main(int argc, char *argv[])
 {
@@ -37,7 +38,7 @@ int main(int argc, char *argv[])
     int arrayEnterosCargado[DIMENSION]= {4,2,5,6,1};
     int validosEnterosCargado=5;
 
-    char arrayCharCargado2[DIMENSION]={'b','d','f','h','i'};
+    char arrayCharCargado2[DIMENSION]= {'b','d','f','h','i'};
     int validosCharCargado2 = 5;
     int v = 0;
 
@@ -168,9 +169,9 @@ int main(int argc, char *argv[])
             muestraArregloChar(arrayCharCargado,validosCharCargado);
             printf("Arreglo numero 2: \n");
             muestraArregloChar(arrayCharCargado2,validosCharCargado2);
-            intercalarArreglosOrdenados(arrayCharCargado,validosCharCargado,arrayCharCargado2,validosCharCargado2,validosCharCargado2,v);
+            v = intercalarArreglosOrdenados(arrayCharCargado,validosCharCargado,arrayCharCargado2,validosCharCargado2,arrayChar,v);
             printf("Arreglo 1 y 2: \n");
-            muestraArregloChar(arrayCharCargado2,validosCharCargado2);
+            muestraArregloChar(arrayChar,v);
 
             system("PAUSE");
             break;
@@ -473,9 +474,32 @@ void insertar (int array[], int u, int dato)
 
 }
 
-int intercalarArreglosOrdenados (char array1[],int a ,char array2[],int b ,char array3,int v){
+int intercalarArreglosOrdenados (char array1[],int a,char array2[],int b,char array3[],int v)
+{
+    int i = 0;
+    int j = 0;
 
+    while (i<a && j<b)
+    {
+        if (array1[i]<array2[j])
+        {
+            array3[v++]=array1[i++];
+        }
+        else
+        {
+            array3[v++]=array2[j++];
+        }
+    }
+    // Por si quedan elementos en alguno de los dos arrays, dado qe el while de arriba corta cuadno alguno de los 2 se queda sin datos
+    while (i < a)
+    {
+        array3[v++] = array1[i++];
+    }
 
+    while (j < b)
+    {
+        array3[v++] = array2[j++];
+    }
 
 
     return v;
