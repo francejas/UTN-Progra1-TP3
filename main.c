@@ -172,6 +172,10 @@ int main(int argc, char *argv[])
             v = intercalarArreglosOrdenados(arrayCharCargado,validosCharCargado,arrayCharCargado2,validosCharCargado2,arrayChar,v);
             printf("Arreglo 1 y 2: \n");
             muestraArregloChar(arrayChar,v);
+            system("PAUSE");
+            break;
+        case 14:
+
 
             system("PAUSE");
             break;
@@ -210,6 +214,7 @@ int menu()
     printf("\n11- Ordenamiento por Seleccion.");
     printf("\n12- Ordenamiento por Inserción.");
     printf("\n13- Dados dos arreglos ordenados alfabéticamente, crear un tercer arreglo con los elementos de los dos primeros intercalados, de manera que quede un arreglo también ordenado alfabéticamente.");
+    printf("\n14- Dado el vector {1,5,6,7,8} escribir un programa que genere otro vector con la suma del contenido de todo los elementos anteriores al índice actual: {1,6,12,19,27}.");
     printf("\n0- SALIR");
     printf("\n\nIngrese su elecci�n: ");
     scanf("%d", &input);
