@@ -37,6 +37,8 @@ int main(int argc, char *argv[])
     int arrayEnterosCargado[DIMENSION]= {4,2,5,6,1};
     int validosEnterosCargado=5;
 
+    char arrayCharCargado2[DIMENSION]={'b','d','f','h','i'};
+    int validosCharCargado2 = 5;
     int v = 0;
 
     char datoChar;
@@ -146,11 +148,30 @@ int main(int argc, char *argv[])
             system("PAUSE");
             break;
         case 11:
-            printf("Arreglo antes de ordenar: \n");
+            printf("Arreglo antes de ordenar por seleccion: \n");
             muestraArreglo(arrayEnterosCargado,validosEnterosCargado);
             ordenamientoSeleccion(arrayEnterosCargado,validosEnterosCargado);
             printf("Arreglo despues de ordenar: \n");
             muestraArreglo(arrayEnterosCargado,validosEnterosCargado);
+            system("PAUSE");
+            break;
+        case 12:
+            printf("Arreglo antes de ordenar por insercion: \n");
+            muestraArreglo(arrayEnterosCargado,validosEnterosCargado);
+            ordenamientoInsercion(arrayEnterosCargado,validosEnterosCargado);
+            printf("Arreglo despues de ordenar por insercion: \n");
+            muestraArreglo(arrayEnterosCargado,validosEnterosCargado);
+            system("PAUSE");
+            break;
+        case 13:
+            printf("Arreglo numero 1: \n");
+            muestraArregloChar(arrayCharCargado,validosCharCargado);
+            printf("Arreglo numero 2: \n");
+            muestraArregloChar(arrayCharCargado2,validosCharCargado2);
+            intercalarArreglosOrdenados(arrayCharCargado,validosCharCargado,arrayCharCargado2,validosCharCargado2,validosCharCargado2,v);
+            printf("Arreglo 1 y 2: \n");
+            muestraArregloChar(arrayCharCargado2,validosCharCargado2);
+
             system("PAUSE");
             break;
         case 0:
@@ -186,6 +207,8 @@ int menu()
     printf("\n9- Realizar una función que determine si un arreglo es capicúa.");
     printf("\n10- Realizar una función que invierta los elementos de un arreglo. (sin utilizar un arreglo auxiliar).");
     printf("\n11- Ordenamiento por Seleccion.");
+    printf("\n12- Ordenamiento por Inserción.");
+    printf("\n13- Dados dos arreglos ordenados alfabéticamente, crear un tercer arreglo con los elementos de los dos primeros intercalados, de manera que quede un arreglo también ordenado alfabéticamente.");
     printf("\n0- SALIR");
     printf("\n\nIngrese su elecci�n: ");
     scanf("%d", &input);
@@ -395,7 +418,8 @@ void ordenamientoSeleccion (int array[], int v )
     int i=0;
     int aux;
 
-    while(i<v-1){
+    while(i<v-1)
+    {
         posMenor=posicionMenor(array,v,i);
         aux=array[posMenor];
         array[posMenor]=array[i];
@@ -404,15 +428,18 @@ void ordenamientoSeleccion (int array[], int v )
     }
 }
 
-int posicionMenor (int array[], int v, int pos){
+int posicionMenor (int array[], int v, int pos)
+{
     int menor=array[pos];
     int posMenor=pos;
     //emepzamos desde la siguiente posicion
     int i=pos+1;
 
 
-    while (i<v){
-        if (menor>array[i]){
+    while (i<v)
+    {
+        if (menor>array[i])
+        {
             menor = array[i];
             posMenor = i;
         }
@@ -421,3 +448,35 @@ int posicionMenor (int array[], int v, int pos){
     return posMenor;
 }
 
+void ordenamientoInsercion (int array[], int v)
+{
+
+    int u=0;
+
+    while(u<v-1)
+    {
+        insertar(array,u,array[u+1]);
+        u++;
+    }
+}
+
+void insertar (int array[], int u, int dato)
+{
+    int i=u;
+
+    while(i>=0 && dato<array[i])
+    {
+        array[i+1]=array[i];
+        i--;
+    }
+    array[i+1]=dato;
+
+}
+
+int intercalarArreglosOrdenados (char array1[],int a ,char array2[],int b ,char array3,int v){
+
+
+
+
+    return v;
+}
