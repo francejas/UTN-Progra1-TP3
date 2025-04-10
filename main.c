@@ -524,8 +524,7 @@ int acumuladoAnterior (int array[], int v, int arrayAcumulado[], int validosAcum
 
     while(u>=0)
     {
-
-        for (int i = u; i>=0; i--)
+        for (int i = 0; i>=u; i++)
         {
             a+=array[i];
         }
@@ -536,3 +535,4 @@ int acumuladoAnterior (int array[], int v, int arrayAcumulado[], int validosAcum
 
     return validosAcumulado;
 }
+
