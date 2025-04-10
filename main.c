@@ -524,8 +524,10 @@ int acumuladoAnterior (int array[], int v, int arrayAcumulado[], int validosAcum
 
     while(u>=0)
     {
-        for (int i = 0; i>=u; i++)
+        a = 0;
+        for (int i = 0; i<=u; i++)
         {
+
             a+=array[i];
         }
     arrayAcumulado[u]=a;
