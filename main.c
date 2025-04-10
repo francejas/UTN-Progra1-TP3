@@ -31,6 +31,7 @@ int main(int argc, char *argv[])
     int arrayEnteros[DIMENSION];
     float arrayFloat[DIMENSION];
     char arrayChar[DIMENSION];
+    int v = 0;
 
     char arrayCharCargado[DIMENSION] = {'a', 'c', 'e', 'g'};
     int validosCharCargado =4;
@@ -40,7 +41,9 @@ int main(int argc, char *argv[])
 
     char arrayCharCargado2[DIMENSION]= {'b','d','f','h','i'};
     int validosCharCargado2 = 5;
-    int v = 0;
+
+    int arrayVector[DIMENSION]= {1,5,6,7,8};
+    int validosVector=5;
 
     char datoChar;
     char caracter;
@@ -175,8 +178,11 @@ int main(int argc, char *argv[])
             system("PAUSE");
             break;
         case 14:
-
-
+            printf("Arreglo vector:  /n");
+            muestraArreglo(arrayVector,validosVector);
+            v=acumuladoAnterior(arrayVector,validosVector,arrayEnteros,v);
+            printf("Arreglo acumulado");
+            muestraArreglo(arrayEnteros,v);
             system("PAUSE");
             break;
         case 0:
@@ -457,18 +463,18 @@ int posicionMenor (int array[], int v, int pos)
 void ordenamientoInsercion (int array[], int v)
 {
 
-    int u=0;
+    int u=0; //inicio
 
     while(u<v-1)
     {
         insertar(array,u,array[u+1]);
-        u++;
+        u++; //luego de insertar aumenta el inicio +1
     }
 }
 
 void insertar (int array[], int u, int dato)
 {
-    int i=u;
+    int i=u; //ahora i es el inicio, qe va a ir disminuyendo
 
     while(i>=0 && dato<array[i])
     {
@@ -508,4 +514,25 @@ int intercalarArreglosOrdenados (char array1[],int a,char array2[],int b,char ar
 
 
     return v;
+}
+
+int acumuladoAnterior (int array[], int v, int arrayAcumulado[], int validosAcumulado)
+{
+
+    int u=v-1;
+    int a = 0 ;
+
+    while(u>=0)
+    {
+
+        for (int i = u; i>=0; i--)
+        {
+            a+=array[i];
+        }
+    arrayAcumulado[u]=a;
+    u--;
+    validosAcumulado++;
+    }
+
+    return validosAcumulado;
 }
